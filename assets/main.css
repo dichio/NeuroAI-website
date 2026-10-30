@@ -489,7 +489,6 @@ footer{
 
 footer div.sponsors{justify-content:center; gap:1rem 2.5rem; margin:0 auto 1.5rem;}
 footer a.sponsor img{height:calc(var(--logo-h, 3rem) * 0.5333);}
-footer p.footer-organisers{margin:0 auto 0.5rem;}
 
 /* ---- Small screens ---------------------------------------------------- */
 
