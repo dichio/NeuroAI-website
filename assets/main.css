@@ -343,7 +343,7 @@ ol.day > li > a:hover .day-name{text-decoration:underline;}
 .home p.thanks{margin-top:3rem; color:var(--muted);}
 .home footer{margin-top:6rem;}
 
-/* The one tinted band (Confirmed speakers), full width. */
+/* The one tinted band (Speakers), full width. */
 .home main > .band{width:100%; margin-top:6rem; padding:4.5rem 0 4rem; background:var(--bg-tint);}
 .band > *{width:var(--column); margin-inline:auto;}
 .band > h2{margin-top:0;}
@@ -356,7 +356,7 @@ td{padding:0; text-align:left; vertical-align:top;}
 
 /* One table per programme item: time column + content column. */
 td.date{
-    width:4.5rem;
+    width:7.25rem;   /* fits a range such as 09:15–09:50 */
     padding:1.1rem 1rem 0 0;
     color:var(--qb-deep);
     font-weight:600;
@@ -380,6 +380,8 @@ table[id^="session"]{
 table[id^="session"] td{padding-inline:clamp(1rem, 3vw, 1.5rem);}
 table[id^="session"] td.abstract{color:var(--text);}
 table[id^="session"] tr:last-child td{padding-bottom:1.25rem;}
+table[id^="session"] td.date, table[id^="session"] td.title{padding-top:0.4rem; padding-bottom:0.4rem; vertical-align:baseline;}
+table[id^="session"] tr:last-child td.date, table[id^="session"] tr:last-child td.title{padding-bottom:1.25rem;}
 td.room{
     padding-top:1.25rem;
     padding-bottom:0.5rem;
@@ -401,26 +403,67 @@ ul.speakers{margin:0.5rem 0 0;}
 ul.speakers li{margin-bottom:0.85rem;}
 ul.speakers li.tba{color:var(--muted); font-style:italic;}
 
-/* Speaker entries (home grid and Programme session lists): name on its own
-   line in the brand colour, affiliation below in muted text. */
-/* Names never wrap (keeps hyphenated surnames such as Cayco-Gajic whole). */
+/* Speaker entries (Programme session lists): name on its own line in the
+   brand colour, affiliation below in muted text. Names never wrap (keeps
+   hyphenated surnames such as Cayco-Gajic whole). */
 .speaker-name{display:block; color:var(--qb-deep); font-size:1.25em; font-weight:700; line-height:1.25; white-space:nowrap;}
 .speaker-aff{display:block; color:var(--muted); font-weight:400;}
 .speaker-topic{display:block; color:var(--muted); font-size:0.9em; font-style:italic;}
+
+/* Home speaker cards: round photo, name and affiliation; the bio and website
+   link open on click (native details/summary, keyboard accessible). */
 ul.speaker-grid{
     display:grid;
     grid-template-columns:repeat(3, minmax(0, 1fr));
-    gap:1.5rem 2.5rem;
+    gap:1.5rem;
+    align-items:start;
     margin-top:1.5rem;
-    margin-bottom:1.75rem;
+    margin-bottom:0;
 }
 ul.speaker-grid li{margin:0;}
 .home .speaker-name{font-weight:600;}
+.speaker-card{background:var(--bg); border-top:3px solid var(--qb-brand);}
+.speaker-card summary{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:1.25rem 1rem 1rem;
+    text-align:center;
+    cursor:pointer;
+    list-style:none;
+}
+.speaker-card summary::-webkit-details-marker{display:none;}
+.speaker-card summary:focus-visible{outline-offset:-3px;}
+.speaker-card summary img{
+    display:block;
+    width:8rem;
+    height:8rem;
+    margin:0 auto 0.85rem;
+    border-radius:50%;
+    object-fit:cover;
+}
+.speaker-card summary::after{
+    content:"Flash bio +";
+    display:block;
+    margin-top:auto;
+    padding-top:0.6rem;
+    color:var(--qb-deep);
+    font-size:0.9rem;
+    font-weight:600;
+}
+.speaker-card[open] summary::after{content:"Flash bio \2212";}
+.speaker-card summary:hover .speaker-name{text-decoration:underline;}
+.home .speaker-aff{min-height:3em; line-height:1.5;}   /* reserve two lines so closed cards are equal */
+.speaker-bio{padding:0 1rem 1.25rem; font-size:0.95rem; line-height:1.45; text-align:left;}
+.speaker-bio p{margin:0 0 0.6rem;}
+.speaker-bio a{font-weight:600;}
 
 /* Plenary rows */
 table.plenary{background:var(--bg-tint);}
-table.plenary td.date{padding-left:1rem;}
+table.plenary td.date{padding-left:calc(4px + clamp(1rem, 3vw, 1.5rem));}   /* lines up with the times inside session blocks */
 table.plenary td:not(.date){padding-right:1rem;}
+table.plenary td{padding-top:0.75rem; padding-bottom:0.75rem; vertical-align:middle;}   /* text centred in the band */
+table.plenary td.title-special{font-size:1.1rem;}
 
 /* ---- Venue ------------------------------------------------------------ */
 
@@ -438,6 +481,7 @@ iframe.directions{
    and the width follows the logo's own proportions (never stretched). */
 
 .sponsor-group{margin-bottom:2rem;}
+.sponsor-main{margin-bottom:2.5rem;}
 .sponsors-label{
     margin-bottom:0.9rem;
     color:var(--muted);
@@ -468,6 +512,17 @@ a.sponsor img{
 .venue-photo img{display:block; width:100%; height:auto;}
 .venue-photo figcaption{margin-top:0.5rem; color:var(--muted); font-size:0.9rem;}
 
+/* ---- Notice (callout) ------------------------------------------------- */
+
+.notice{
+    margin-block:1rem 1.25rem;
+    padding:0.85rem 1.1rem;
+    background:var(--bg-tint);
+    border-left:4px solid var(--qb-deep);
+    color:var(--ink);
+    font-weight:600;
+}
+
 /* ---- Practical info: contacts ---------------------------------------- */
 /* The "Email us" link is underlined on hover/focus only; the focus ring stays.
    Home organisers: one comma-separated line, never broken mid-name. */
@@ -493,7 +548,7 @@ footer a.sponsor img{height:calc(var(--logo-h, 3rem) * 0.5333);}
 /* ---- Small screens ---------------------------------------------------- */
 
 @media (max-width: 40rem){
-    td.date{width:3.75rem; padding-right:0.75rem;}
+    td.date{width:6.25rem; padding-right:0.5rem;}
     td.title, td.title-special{font-size:1.1rem;}
     .venue-split{grid-template-columns:1fr; gap:0;}
     .venue-photo{margin-top:1.5rem;}
@@ -510,7 +565,7 @@ footer a.sponsor img{height:calc(var(--logo-h, 3rem) * 0.5333);}
     .banner-photo::after{background:color-mix(in srgb, var(--brand-night) 72%, transparent);}
 
     ul.glance{grid-template-columns:1fr; gap:0.75rem;}
-    ul.speaker-grid{grid-template-columns:1fr; gap:1.25rem;}
+    ul.speaker-grid{grid-template-columns:1fr; gap:1rem;}
     .tile{padding:1rem;}
 
     .home main > h2, .home main > .band{margin-top:4rem;}
@@ -554,6 +609,10 @@ footer a.sponsor img{height:calc(var(--logo-h, 3rem) * 0.5333);}
     table{break-inside:avoid;}
     table[id^="session"]{margin-top:6mm; background:none; border-left:2pt solid var(--qb-deep);}
     table.plenary, .tile, .band{background:none;}
+    .notice{background:none; break-inside:avoid;}
+    .speaker-card{border-top:1pt solid var(--rule); break-inside:avoid;}
+    .speaker-card summary::after{display:none;}
+    .speaker-card summary img{width:20mm; height:20mm;}
     td.date{padding-top:2.5mm;}
     td.title, td.title-special{padding-top:2mm; font-size:11.5pt;}
     td.room{font-size:13pt; padding-top:2mm;}
