@@ -4,7 +4,7 @@ One-day event on neuroscience and AI: brains, AI and efficiency.
 
 - **Date:** Monday 14 December 2026
 - **Venue:** Auditorium, PariSanté Campus, 2-10 Rue d'Oradour-sur-Glane, 75015 Paris
-- **Supported by:** QBio (ENS-PSL), ENS-PSL and PariSanté Campus
+- **Supported by:** QBio (ENS-PSL) and ENS-PSL; in partnership with PR[AI]RIE and PariSanté Campus
 - **Website:** <https://dichio.github.io/NeuroAI-website>
 - **Registration deadline:** Friday 4 December 2026
 
