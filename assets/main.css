@@ -440,7 +440,7 @@ ul.speaker-grid li{margin:0;}
    except --qb-deep, so the label always uses --qb-deep; the colour is on the rule. */
 .session-label{
     display:block;
-    margin-bottom:0.15rem;
+    margin-bottom:0.4rem;
     color:var(--qb-deep);
     font-size:0.8rem;
     font-weight:700;
@@ -463,14 +463,10 @@ ul.speaker-grid.single{
 }
 
 /* Flyer download block (home) */
-.flyer{display:flex; align-items:center; justify-content:center; gap:1.25rem; margin:3.5rem auto 0;}
-.flyer-thumb{flex:none; width:10.5rem; line-height:0; border:1px solid var(--rule); box-shadow:0 2px 8px rgba(0,0,0,0.15);}
-.flyer-thumb img{width:100%; height:auto;}
-.flyer-text{display:flex; flex-direction:column; gap:0.6rem; align-items:flex-start;}
-@media (max-width: 30rem){
-    .flyer{flex-direction:column; text-align:center;}
-    .flyer-text{align-items:center;}
-}
+.flyer{display:flex; flex-direction:column; align-items:center; gap:1rem; width:100%; margin:3.5rem auto 0; text-align:center;}
+.flyer-thumb{display:block; width:15rem; max-width:100%; line-height:0; border:1px solid var(--rule); box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+.flyer-thumb img{display:block; width:100%; height:auto;}
+.flyer-text{display:flex; flex-direction:column; gap:0.6rem; align-items:center;}
 .flyer-title{margin:0; color:var(--muted); font-size:0.95rem; font-weight:700; font-variant-caps:all-small-caps; letter-spacing:0.06em;}
 .flyer-button{display:inline-block; padding:0.55rem 1rem; background:var(--qb-deep); color:#fff; font-weight:600; text-decoration:none;}
 .flyer-button:hover{text-decoration:underline;}
