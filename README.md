@@ -10,7 +10,7 @@ One-day event on neuroscience and AI: brains, AI and efficiency.
 
 ## Organisers
 
-Sebastian Castedo, Vito Dichio, Marcelo Guzman, Jonas Ranft, Thomas Tulinski and Sébastien Wolf.
+Sebastian Castedo, Vito Dichio, Marcelo Guzman, Jonas Ranft and Sébastien Wolf.
 
 ## Credits and licence
 
